@@ -8,20 +8,22 @@ agnostic. However, FreshPorts uses Nginx.
 
 To use this, here is the outline of the steps you need to perform:
 
-1 - remove the virtual host of your real website from the webserver
-2 - add this virtual host, ensuring that you specify the right
-    ServerName or ServerAlias for the host you are taking offline.
-3 - signal your webserver to reload
+* remove the virtual host of your real website from the webserver
+* add this virtual host, ensuring that you specify the right
+  ServerName or ServerAlias for the host you are taking offline.
+* signal your webserver to reload
 
 Enjoy.
 
 To prepare:
 
+```
 sudo mkdir /usr/local/etc/nginx/includes.offline
 sudo cp offline.conf offline.inc /usr/local/etc/nginx/includes.offline
 cd /usr/local/etc/nginx/includes.offline
 sudo ln -s  /usr/local/www/default_vhost_nginx/configuration/vhosts.conf default_vhost_nginx.conf
 sudo ln -s /usr/local/etc/freshports/vhosts.conf.nginx.freshports.net    freshports.NET.conf
+```
 
 Customize offline.conf
 * adjust hostnames 
@@ -36,8 +38,20 @@ Create maintenance/maintenance.html
 
 To take websites offline:
 
+```
 cd /usr/local/etc/nginx
 sudo mv includes includes.actual
 sudo ln -s includes.offline includes
 sudo service nginx configtest
 sudo service nginx reload (might be enough, if not, reload)
+```
+
+To take webites online:
+
+```
+cd /usr/local/etc/nginx
+sudo rm includes
+sudo  mv includes.actual includes
+sudo service nginx configtest
+sudo service nginx reload (might be enough, if not, reload)
+```
