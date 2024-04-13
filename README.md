@@ -23,6 +23,9 @@ sudo cp offline.conf offline.inc /usr/local/etc/nginx/includes.offline
 cd /usr/local/etc/nginx/includes.offline
 sudo ln -s  /usr/local/www/default_vhost_nginx/configuration/vhosts.conf default_vhost_nginx.conf
 sudo ln -s /usr/local/etc/freshports/vhosts.conf.nginx.freshports.net    freshports.NET.conf
+cd ..
+sudo mkdir -p /usr/local/etc/nginx/html/maintenance
+sudo cp -p maintenance.html /usr/local/etc/nginx/html/maintenance
 ```
 
 Customize offline.conf
@@ -30,11 +33,7 @@ Customize offline.conf
 * adjust IP addresses
 * adjust ssl_certificate & ssl_certificate_key
 
-Create maintenance/maintenance.html
-
-* TO BE COMPLETED
-* I did create this, now I can't locate it
-* I think it was in /usr/local/etc/nginx/html/maintenance/maintenance.html
+Customtize maintenance/maintenance.html
 
 To take websites offline:
 
